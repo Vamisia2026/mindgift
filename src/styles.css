@@ -1,0 +1,175 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --gradient-hero: var(--gradient-hero);
+  --gradient-card: var(--gradient-card);
+  --gradient-gold: var(--gradient-gold);
+  --shadow-glow: var(--shadow-glow);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-gold: var(--shadow-gold);
+}
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Merriweather", ui-serif, Georgia, serif;
+  --font-display: "Merriweather", ui-serif, Georgia, serif;
+  --font-editorial-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: #ffffff;
+  --foreground: #0f0800;
+  --card: #ffffff;
+  --card-foreground: #0f0800;
+  --popover: #ffffff;
+  --popover-foreground: #0f0800;
+  --primary: #004497;
+  --primary-foreground: #ffffff;
+  --secondary: #0b7060;
+  --secondary-foreground: #ffffff;
+  --muted: #fafaf7;
+  --muted-foreground: rgba(15, 8, 0, 0.6);
+  --accent: #0b7060;
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.6 0.24 27);
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 68, 151, 0.2);
+  --input: rgba(0, 68, 151, 0.2);
+  --ring: #004497;
+
+  --accent-gold: #d4af37;
+  --accent-gold-soft: #f5e6a8;
+  --accent-gold-deep: #b8860b;
+  --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f5e6a8 50%, #b8860b 100%);
+  --shadow-gold: 0 12px 32px -8px rgba(212, 175, 55, 0.5);
+
+  --editorial-bg: #ffffff;
+  --editorial-ink: #0f0800;
+  --editorial-hairline: rgba(0, 68, 151, 0.2);
+  --editorial-ink-soft: rgba(15, 8, 0, 0.6);
+  --editorial-rule-track: rgba(11, 112, 96, 0.18);
+  --editorial-rule-fill: #0b7060;
+
+  --gradient-hero: linear-gradient(135deg, #004497 0%, #0b7060 100%);
+  --gradient-card: linear-gradient(180deg, #ffffff 0%, #fafaf7 100%);
+  --shadow-glow: 0 20px 60px -20px rgba(0, 68, 151, 0.25);
+  --shadow-soft: 0 8px 30px -12px rgba(15, 8, 0, 0.12);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    font-size: 18px;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: "Merriweather", ui-serif, Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility choice-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  background-color: #ffffff;
+  color: var(--editorial-ink);
+  border: 2px solid var(--primary);
+  border-radius: 4px;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-align: left;
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 180ms ease, color 180ms ease;
+  cursor: pointer;
+}
+@utility choice-card {
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 32px -12px rgba(0, 68, 151, 0.35);
+  }
+  &[data-active="true"] {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+@utility btn-primary-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1.15rem 1.75rem;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 2px solid var(--accent-gold);
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(212, 175, 55, 0.2);
+  transition: box-shadow 220ms ease, transform 220ms ease, background-color 220ms ease;
+}
+@utility btn-primary-gold {
+  &:hover {
+    box-shadow: var(--shadow-gold);
+    background-color: #003a82;
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes editorial-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@utility editorial-fade {
+  opacity: 0;
+  animation: editorial-fade-in 320ms ease-out forwards;
+}
